@@ -41,10 +41,12 @@ QuickSel.prototype.buildXpathPart = function(tag_name, attrs=[], preppend=""){
 			attr_val = attr_val.replace(/\"/g, "\\\"")
 			if(attr_comp == "")
 				parts += `${attr_name}`
-			if(attr_comp == "=")
-				parts += `${attr_name}="${attr_val}"`
-			if(attr_comp == "contains")
-				parts += `contains(${attr_name},"${attr_val}")`
+			if(attr_val.length < 30){
+				if(attr_comp == "=")
+					parts += `${attr_name}="${attr_val}"`
+				if(attr_comp == "contains")
+					parts += `contains(${attr_name},"${attr_val}")`
+			}
 			attr_x += 1
 		}
 		parts += `]`
@@ -59,11 +61,13 @@ QuickSel.prototype.buildSelector = function(parts, format){
 }
 QuickSel.prototype.getSelectorCount = function(selector, format){
 	if(format == "xpath"){
-		let result = document.evaluate(
-			selector, document,
-			null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
-		)
-		return result.snapshotLength
+		try {
+			let result = document.evaluate(
+				selector, document,
+				null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+			)
+			return result.snapshotLength
+		} catch (ex) { }
 	} else {
 		let els = document.querySelectorAll(selector)
 		return els.length
@@ -84,7 +88,7 @@ QuickSel.prototype.getSelectorCombinations = function*(el, tag_name, attrs=[], f
 		let parentChildren = Array.from(el.parentNode.children)
 		offset = parentChildren.indexOf(el) + 1
 	}
-	yield this.getSelector(tag_name, attrs, format, preppend)+`[${offset}]`
+	// yield this.getSelector(tag_name, attrs, format, preppend)+`[${offset}]`
 }
 QuickSel.prototype.getUniqueTagNames = function(){
 	return ["h1", "h2", "h3", "h4", "h5", "h6"]
