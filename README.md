@@ -7,7 +7,7 @@ QuickSel is a tool for generating xpath selectors based on a provided number of 
 This tool is best fit for:
 - Front-end web developers/designers
 - Automation experts
-- Xpath engineers
+- Data engineers
 
 [![Preview](images/preview.png)](images/preview.png)
 
