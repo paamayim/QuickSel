@@ -1,0 +1,30 @@
+{
+	"manifest_version": 3,
+	"name": "QuickSel",
+	"version": "1.0",
+	"description": "Custom Xpath generator",
+	"permissions": ["activeTab", "scripting"],
+	"icons": {
+		"48": "images/logo.png"
+	},
+	"action": {
+		"default_title": "QuickSel"
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content_scripts/quicksel.js", "content_scripts/content.js"],
+			"css": ["content_scripts/panel.css"],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["content_scripts/panel.html", "content_scripts/panel.css"],
+			"matches": ["<all_urls>"]
+		}
+	]
+}

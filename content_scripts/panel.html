@@ -1,0 +1,47 @@
+<div id="quickSelPanel" class="quickSel-panel">
+	<div class="quickSel-header">
+		<h3>QUICKSEL</h3>
+	</div>
+	<div class="quickSel-controls">
+		<fieldset class="quickSel-controls-left">
+			<legend>&nbsp;</legend>
+			<button class="quickSel-start">Select Element</button>
+		</fieldset>
+		<fieldset>
+			<legend title="Minimum count per selector found">Min. C.</legend>
+			<input class="quickSel-min-tc" name="min-tc" value="1">
+		</fieldset>
+		<fieldset>
+			<legend title="Maximum count per selector found">Max. C.</legend>
+			<input class="quickSel-max-tc" name="max-tc" value="1000">
+		</fieldset>
+		<fieldset>
+			<legend title="Maximum results per count grouping">Max. per C.</legend>
+			<input class="quickSel-max-per" name="max-per" value="8">
+		</fieldset>
+		<fieldset>
+			<legend title="TODO">Format</legend>
+			<select class="quickSel-format" disabled>
+				<option value="xpath">XPath</option>
+				<option value="css">CSS</option>
+			</select>
+		</fieldset>
+	</div>
+	<div class="quickSel-status"></div>
+	<div class="quickSel-results">
+		<table class="quickSel-table">
+			<thead>
+				<tr>
+					<th width="60">Count</th>
+					<th>Selector</th>
+					<th width="80"></th>
+				</tr>
+			</thead>
+			<tbody class="quickSel-results-body">
+				<tr>
+					<td colspan="3" class="quickSel-empty">No selectors generated yet</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
